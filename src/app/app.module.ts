@@ -6,7 +6,8 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
-import { IndexComponent } from './index/index.component';
+import { IndexComponent } from "./index/index.component";
+import { KeyboardComponent } from "./keyboard/keyboard.component";
 
 @NgModule({
 	declarations: [
@@ -14,7 +15,8 @@ import { IndexComponent } from './index/index.component';
 		NavbarComponent,
 		FooterComponent,
 		ThemePickerComponent,
-  IndexComponent,
+		IndexComponent,
+		KeyboardComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule],
 	providers: [],

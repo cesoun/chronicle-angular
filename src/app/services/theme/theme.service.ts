@@ -5,8 +5,6 @@ import Theme from "../../core/interfaces/theme";
 	providedIn: "root",
 })
 export class ThemeService {
-	private renderer: Renderer2;
-
 	private theme: Theme;
 	private themes: Theme[] = [
 		{ name: "business", emoji: "💼" },
@@ -14,8 +12,7 @@ export class ThemeService {
 		{ name: "dark", emoji: "🌚" },
 	];
 
-	constructor(private rFactory: RendererFactory2) {
-		this.renderer = rFactory.createRenderer(null, null);
+	constructor() {
 		this.theme = this.themes[0];
 	}
 
