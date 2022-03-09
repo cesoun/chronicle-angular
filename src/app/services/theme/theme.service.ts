@@ -6,8 +6,8 @@ import Theme from "../../core/interfaces/theme";
 })
 export class ThemeService {
 	private renderer: Renderer2;
-	private theme: Theme;
 
+	private theme: Theme;
 	private themes: Theme[] = [
 		{ name: "business", emoji: "💼" },
 		{ name: "light", emoji: "🌝" },
@@ -19,19 +19,35 @@ export class ThemeService {
 		this.theme = this.themes[0];
 	}
 
+	/**
+	 * Initializes the service by getting the last stored theme, or defaulting to
+	 * the first theme in the themes array. Then the theme is set.
+	 */
 	init(): void {
 		this.getTheme();
 		this.setTheme(this.theme);
 	}
 
+	/**
+	 * Get the themes available to set.
+	 */
 	getThemes(): Theme[] {
 		return this.themes;
 	}
 
+	/**
+	 * Update the current theme
+	 * @param theme
+	 */
 	update(theme: Theme): void {
 		this.setTheme(theme);
 	}
 
+	/**
+	 * Set the theme locally as well as on the document.
+	 * @param theme
+	 * @private
+	 */
 	private setTheme(theme: Theme): void {
 		this.theme = theme;
 		localStorage.setItem("theme", theme.name);
@@ -40,6 +56,11 @@ export class ThemeService {
 		html.setAttribute("data-theme", this.theme.name);
 	}
 
+	/**
+	 * Get the theme from the storage or fallback to the first theme in the themes
+	 * array.
+	 * @private
+	 */
 	private getTheme(): void {
 		const storedTheme = localStorage.getItem("theme");
 		if (storedTheme) {

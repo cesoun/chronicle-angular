@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
 	declarations: [
@@ -13,6 +14,7 @@ import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 		NavbarComponent,
 		FooterComponent,
 		ThemePickerComponent,
+  IndexComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule],
 	providers: [],

@@ -1,0 +1,49 @@
+  <header class="prose prose-a:after:content-['_↗']">
+    <h1><code>Welcome</code></h1>
+    <p>
+      <strong>Chronicle</strong> is a blogging application written by
+      <a href="https://github.com/cesoun" target="_blank">this nerd</a>.
+    </p>
+    <img src="assets/images/profile-picture.png" width="200" height="200" class="rounded-lg drop-shadow mx-auto">
+    <p>
+      While I've done my best to make things functional, there are likely
+      many things that don't work as expected. I know some of you space
+      cowboys like to break things and would appreciate it if you kept the
+      damage to a minimum.
+    </p>
+    <p>
+      With that out of the way, take a look around or read some of the recent
+      posts listed below.
+    </p>
+  </header>
+
+<!--  TODO: Convert to a component -->
+  <!-- Recent Posts Element -->
+  <div class="flex flex-col mt-8">
+    <div class="flex">
+      <div class="flex-1">
+        <h1 class="text-xl">Recent Posts</h1>
+      </div>
+      <div class="flex-none">
+        <!--      TODO: RouterLink to /posts -->
+        <a href="" class="text-xs link no-underline hover:underline">View all</a>
+      </div>
+    </div>
+
+    <hr class="border-accent">
+
+    <div class="grid grid-flow-row auto-rows-max pt-4 gap-y-2">
+      <a href="" class="btn btn-ghost justify-between w-full">
+        <p class="truncate overflow-hidden ...">Post title goes here.</p>
+        <small class="font-light normal-case">Date</small>
+      </a>
+      <a href="" class="btn btn-ghost justify-between w-full">
+        <p class="truncate overflow-hidden ...">Post title goes here.</p>
+        <small class="font-light normal-case">Date</small>
+      </a>
+      <a href="" class="btn btn-ghost justify-between w-full">
+        <p class="truncate overflow-hidden ...">Post title goes here.</p>
+        <small class="font-light normal-case">Date</small>
+      </a>
+    </div>
+  </div>

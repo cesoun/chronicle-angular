@@ -17,6 +17,10 @@ export class ThemePickerComponent implements OnInit {
 		this.themes = this.themeService.getThemes();
 	}
 
+	/**
+	 * Update the theme with the selected theme.
+	 * @param theme
+	 */
 	updateTheme(theme: Theme): void {
 		this.themeService.update(theme);
 	}
