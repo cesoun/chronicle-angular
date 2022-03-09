@@ -29,7 +29,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/solid.js",
+              "node_modules/@fortawesome/fontawesome-free/js/brands.js",
+              "node_modules/@fortawesome/fontawesome-free/js/fontawesome.js",
+              "node_modules/theme-change/index.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -98,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "chronicle-angular"
+  "defaultProject": "chronicle-angular",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

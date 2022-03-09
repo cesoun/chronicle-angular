@@ -1,0 +1,10 @@
+<div class="dropdown dropdown-end">
+  <label tabindex="0" class="btn btn-ghost"><i class="fa-solid fa-swatchbook"></i></label>
+  <ul tabindex="0" class="mt-3 p-2 shadow dropdown-content menu menu-compact shadow bg-base-200 w-52">
+    <li *ngFor="let theme of themes">
+      <button class="justify-between" data-toggle-theme="{{theme.name}}">
+        {{theme.name}} <span>{{theme.emoji}}</span>
+      </button>
+    </li>
+  </ul>
+</div>
