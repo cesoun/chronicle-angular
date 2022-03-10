@@ -17,33 +17,4 @@
     </p>
   </header>
 
-<!--  TODO: Convert to a component -->
-  <!-- Recent Posts Element -->
-  <div class="flex flex-col mt-8">
-    <div class="flex">
-      <div class="flex-1">
-        <h1 class="text-xl">Recent Posts</h1>
-      </div>
-      <div class="flex-none">
-        <!--      TODO: RouterLink to /posts -->
-        <a href="" class="text-xs link no-underline hover:underline">View all</a>
-      </div>
-    </div>
-
-    <hr class="border-accent">
-
-    <div class="grid grid-flow-row auto-rows-max pt-4 gap-y-2">
-      <a href="" class="btn btn-ghost justify-between w-full">
-        <p class="truncate overflow-hidden ...">Post title goes here.</p>
-        <small class="font-light normal-case">Date</small>
-      </a>
-      <a href="" class="btn btn-ghost justify-between w-full">
-        <p class="truncate overflow-hidden ...">Post title goes here.</p>
-        <small class="font-light normal-case">Date</small>
-      </a>
-      <a href="" class="btn btn-ghost justify-between w-full">
-        <p class="truncate overflow-hidden ...">Post title goes here.</p>
-        <small class="font-light normal-case">Date</small>
-      </a>
-    </div>
-  </div>
+  <app-recent-posts [page]="1" [limit]="10" [orderby]="'desc'"></app-recent-posts>
