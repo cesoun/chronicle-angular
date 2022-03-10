@@ -1,0 +1,32 @@
+<div class="flex flex-col mt-8">
+  <div class="flex">
+    <div class="flex-1">
+      <h1 class="text-xl">Recent Posts</h1>
+    </div>
+    <div class="flex-none">
+      <a routerLink="/posts" class="text-xs link no-underline hover:underline">View all</a>
+    </div>
+  </div>
+
+  <hr class="border-accent">
+
+  <div class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
+    <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
+       *ngFor="let post of this.paginatedPosts.posts">
+      <p class="truncate overflow-hidden ...">{{post.title}}</p>
+      <small class="font-light normal-case">{{post.created_at | date}}</small>
+    </a>
+<!--    <a href="" class="btn btn-ghost justify-between w-full">-->
+<!--      <p class="truncate overflow-hidden ...">Post title goes here.</p>-->
+<!--      <small class="font-light normal-case">Date</small>-->
+<!--    </a>-->
+<!--    <a href="" class="btn btn-ghost justify-between w-full">-->
+<!--      <p class="truncate overflow-hidden ...">Post title goes here.</p>-->
+<!--      <small class="font-light normal-case">Date</small>-->
+<!--    </a>-->
+<!--    <a href="" class="btn btn-ghost justify-between w-full">-->
+<!--      <p class="truncate overflow-hidden ...">Post title goes here.</p>-->
+<!--      <small class="font-light normal-case">Date</small>-->
+<!--    </a>-->
+  </div>
+</div>

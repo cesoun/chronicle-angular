@@ -8,6 +8,8 @@ import { FooterComponent } from "./footer/footer.component";
 import { ThemePickerComponent } from "./theme-picker/theme-picker.component";
 import { IndexComponent } from "./index/index.component";
 import { KeyboardComponent } from "./keyboard/keyboard.component";
+import { RecentPostsComponent } from "./recent-posts/recent-posts.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -17,8 +19,9 @@ import { KeyboardComponent } from "./keyboard/keyboard.component";
 		ThemePickerComponent,
 		IndexComponent,
 		KeyboardComponent,
+		RecentPostsComponent,
 	],
-	imports: [BrowserModule, AppRoutingModule],
+	imports: [BrowserModule, HttpClientModule, AppRoutingModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
