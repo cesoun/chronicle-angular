@@ -12,7 +12,7 @@
     <li *ngFor="let page of pages">
       <button
         class="btn btn-md sm:btn-sm"
-        [class.btn-primary]="page === currentPage"
+        [class.btn-accent]="page === currentPage"
         [class.btn-ghost]="page !== currentPage"
         (click)="onGoTo(page)">
         {{page}}

@@ -9,7 +9,7 @@ import { PostService } from "../services/post/post.service";
 })
 export class PostsComponent implements OnInit {
 	limit: number = 1;
-	orderby: string = "asc";
+	orderby: string = "desc";
 
 	paginatedPosts?: PaginatedPosts;
 

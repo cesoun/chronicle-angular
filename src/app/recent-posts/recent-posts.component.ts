@@ -24,17 +24,6 @@ export class RecentPostsComponent implements OnInit {
 			this.limit || 10,
 			this.orderby || "desc",
 			(pp: PaginatedPosts, err: Error | null) => {
-				// Truncate long titles, continue.
-				const maxLen: number = 30;
-				pp.posts = pp.posts.map((post) => {
-					if (post.title.length > maxLen) {
-						post.title = post.title.slice(0, maxLen) + "...";
-						return post;
-					}
-
-					return post;
-				});
-
 				this.paginatedPosts = pp;
 			}
 		);

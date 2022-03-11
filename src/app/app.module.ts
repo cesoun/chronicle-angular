@@ -10,8 +10,9 @@ import { IndexComponent } from "./index/index.component";
 import { KeyboardComponent } from "./keyboard/keyboard.component";
 import { RecentPostsComponent } from "./recent-posts/recent-posts.component";
 import { HttpClientModule } from "@angular/common/http";
-import { PostsComponent } from './posts/posts.component';
-import { PostPaginatorComponent } from './post-paginator/post-paginator.component';
+import { PostsComponent } from "./posts/posts.component";
+import { PostPaginatorComponent } from "./post-paginator/post-paginator.component";
+import { TruncatePipe } from "./pipes/truncate/truncate.pipe";
 
 @NgModule({
 	declarations: [
@@ -22,8 +23,9 @@ import { PostPaginatorComponent } from './post-paginator/post-paginator.componen
 		IndexComponent,
 		KeyboardComponent,
 		RecentPostsComponent,
-  PostsComponent,
-  PostPaginatorComponent,
+		PostsComponent,
+		PostPaginatorComponent,
+		TruncatePipe,
 	],
 	imports: [BrowserModule, HttpClientModule, AppRoutingModule],
 	providers: [],
