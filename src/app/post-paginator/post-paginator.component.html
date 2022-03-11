@@ -1,0 +1,31 @@
+<nav aria-label="pagination">
+  <ul class="flex gap-x-2">
+    <li>
+      <button
+        class="btn btn-sm btn-ghost"
+        [attr.aria-disabled]="currentPage === 1"
+        [disabled]="currentPage === 1"
+        (click)="onPrev()">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </li>
+    <li *ngFor="let page of pages">
+      <button
+        class="btn btn-sm"
+        [class.btn-accent]="page === currentPage"
+        [class.btn-ghost]="page !== currentPage"
+        (click)="onGoTo(page)">
+        {{page}}
+      </button>
+    </li>
+    <li>
+      <button
+        class="btn btn-sm btn-ghost"
+        [attr.aria-disabled]="currentPage === totalPages"
+        [disabled]="currentPage === totalPages"
+        (click)="onNext()">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

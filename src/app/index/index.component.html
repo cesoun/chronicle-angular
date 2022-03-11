@@ -1,5 +1,6 @@
-  <header class="prose prose-a:after:content-['_↗']">
-    <h1><code>Welcome</code></h1>
+<section class="grid place-content-center">
+  <article class="prose prose-a:after:content-['_↗']">
+    <h1>Welcome</h1>
     <p>
       <strong>Chronicle</strong> is a blogging application written by
       <a href="https://github.com/cesoun" target="_blank">this nerd</a>.
@@ -15,6 +16,11 @@
       With that out of the way, take a look around or read some of the recent
       posts listed below.
     </p>
-  </header>
+  </article>
 
-  <app-recent-posts [page]="1" [limit]="10" [orderby]="'desc'"></app-recent-posts>
+  <section class="pt-12">
+    <app-recent-posts [page]="1" [limit]="10" [orderby]="'desc'"></app-recent-posts>
+  </section>
+</section>
+
+

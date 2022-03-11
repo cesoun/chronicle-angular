@@ -24,8 +24,8 @@ export class PostService {
 			.set("orderby", orderby);
 
 		this.http
-			.get<PaginatedPosts[]>(`${this.API}/post`, { params })
-			.subscribe((posts: PaginatedPosts[]) => {
+			.get<PaginatedPosts>(`${this.API}/post`, { params })
+			.subscribe((posts: PaginatedPosts) => {
 				cb(posts, null);
 			});
 	}
