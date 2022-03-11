@@ -13,6 +13,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { PostsComponent } from "./posts/posts.component";
 import { PostPaginatorComponent } from "./post-paginator/post-paginator.component";
 import { TruncatePipe } from "./pipes/truncate/truncate.pipe";
+import { SignUpComponent } from "./sign-up/sign-up.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
 	declarations: [
@@ -26,8 +28,14 @@ import { TruncatePipe } from "./pipes/truncate/truncate.pipe";
 		PostsComponent,
 		PostPaginatorComponent,
 		TruncatePipe,
+		SignUpComponent,
 	],
-	imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+	imports: [
+		BrowserModule,
+		ReactiveFormsModule,
+		HttpClientModule,
+		AppRoutingModule,
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })

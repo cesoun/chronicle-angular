@@ -1,0 +1,107 @@
+<section class="grid place-content-center gap-8">
+  <article class="prose text-center">
+    <h1>Sign-Up</h1>
+    <p>
+      Glad you could join us, we've got golang and algorithms!
+    </p>
+    <hr class="bg-accent">
+  </article>
+
+  <!-- Error -->
+  <div class="alert alert-error shadow-lg" *ngIf="didError">
+    <div>
+      <p>Uh oh! Something went wrong...</p>
+    </div>
+  </div>
+  <!-- Form Invalid -->
+  <div class="alert alert-warning shadow-lg" *ngIf="isInvalid">
+    <div>
+      <p>Please check inputs and try again...</p>
+    </div>
+  </div>
+
+  <form *ngIf="signupForm" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <!-- Email -->
+    <div class="form-control">
+      <label class="label" for="email">
+        <span class="label-text">Email</span>
+        <span class="label-text-alt">Your virtual inbox</span>
+      </label>
+      <input [class.input-error]="signupForm.get('email')?.errors" [class.input-success]="!signupForm.get('email')?.errors" [maxlength]="stdMax"
+             [minlength]="stdMin"
+             class="input input-bordered"
+             formControlName="email"
+             id="email"
+             placeholder="internet.enjoyer@email.ext"
+             required
+             type="email">
+      <label *ngIf="signupForm.get('email')?.errors" class="label" for="email">
+        <span class="label-text-alt text-error">Letters a-Z, 0-9 only please.</span>
+      </label>
+    </div>
+    <!-- Username -->
+    <div class="form-control">
+      <label class="label" for="username">
+        <span class="label-text">Username</span>
+        <span class="label-text-alt">What should we call you?</span>
+      </label>
+      <input [class.input-error]="signupForm.get('username')?.errors" [class.input-success]="!signupForm.get('username')?.errors" [maxlength]="usernameMax"
+             [minlength]="usernameMin"
+             [pattern]="usernamePattern"
+             class="input input-bordered"
+             formControlName="username"
+             id="username"
+             placeholder="superuser41"
+             required
+             type="text">
+      <label *ngIf="signupForm.get('username')?.errors" class="label" for="username">
+        <span class="label-text-alt text-error">Letters a-Z, 0-9 only please.</span>
+      </label>
+    </div>
+    <!-- Password -->
+    <div class="form-control">
+      <label class="label" for="password">
+        <span class="label-text">Password</span>
+        <span class="label-text-alt"><input (click)="togglePassword()" [checked]="showPassword" class="toggle toggle-xs"
+                                            type="checkbox"></span>
+      </label>
+      <input [class.input-error]="signupForm.get('password')?.errors" [class.input-success]="!signupForm.get('password')?.errors" [maxlength]="passwordMax"
+             [minlength]="passwordMin"
+             [pattern]="passwordPattern"
+             [type]="showPassword ? 'text' : 'password'"
+             class="input input-bordered"
+             formControlName="password"
+             id="password"
+             placeholder="********"
+             required>
+      <label *ngIf="signupForm.get('password')?.errors" class="label" for="password">
+        <span class="label-text-alt text-error">Need 3/4 of these: [0-9], [a-zA-Z], [`~!@#,...]. Len: 8-32</span>
+      </label>
+    </div>
+    <!-- Confirm Password -->
+    <div class="form-control">
+      <label class="label" for="confirm-password">
+        <span class="label-text">Confirm Password</span>
+      </label>
+      <input [class.input-error]="signupForm.get('confirmPassword')?.errors" [class.input-success]="!signupForm.hasError('passwordMismatch')" [maxlength]="passwordMax"
+             [minlength]="passwordMin"
+             [pattern]="passwordPattern"
+             [type]="showPassword ? 'text' : 'password'"
+             class="input input-bordered"
+             formControlName="confirmPassword"
+             id="confirm-password"
+             placeholder="********"
+             required>
+      <label *ngIf="signupForm.get('confirmPassword')?.hasError('matching')" class="label" for="confirm-password">
+        <span class="label-text-alt text-error">Passwords do not match!</span>
+      </label>
+    </div>
+    <!-- Submit button -->
+    <div class="grid grid-cols-2 gap-12 pt-8">
+      <a routerLink="/login" class="btn btn-ghost btn-outline">Login</a>
+      <button type="submit" class="btn btn-primary" [class.loading]="isBusy" [disabled]="this.isBusy || !signupForm.valid">
+        {{!isBusy ? 'Sign-Up' : ''}}
+      </button>
+    </div>
+  </form>
+</section>
