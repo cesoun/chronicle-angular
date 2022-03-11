@@ -10,6 +10,10 @@
 
   <hr class="border-accent">
 
+  <div class="container text-center" *ngIf="!paginatedPosts">
+    <button class="btn btn-ghost loading"></button>
+  </div>
+
   <div class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
     <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
        *ngFor="let post of this.paginatedPosts.posts">
