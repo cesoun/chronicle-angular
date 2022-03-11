@@ -1,29 +1,31 @@
-<header class="prose mb-4">
-  <h1>Posts</h1>
-  <p>
-    There has to be at least one thing in this ol' database worth reading.
-    If not then it might be a you thing... definitely not a me thing, im perfect.
-  </p>
-</header>
+<section class="grid place-content-center">
+  <article class="prose">
+    <h1>Posts</h1>
+    <p>
+      There has to be at least one thing in this ol' database worth reading.
+      If not then it might be a you thing... definitely not a me thing, im perfect.
+    </p>
+  </article>
 
-<hr class="border-accent">
+  <section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
+    <hr class="border-accent">
 
-<section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
-  <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
-     *ngFor="let post of this.paginatedPosts.posts">
-    <p class="capitalize">{{post.title | truncate:35:true}}</p>
-    <small class="font-light normal-case text-secondary">{{post.created_at | date}}</small>
-  </a>
+    <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
+       *ngFor="let post of this.paginatedPosts.posts">
+      <p class="capitalize">{{post.title | truncate:35:true}}</p>
+      <small class="font-light normal-case text-secondary">{{post.created_at | date}}</small>
+    </a>
 
-  <app-post-paginator
-    class="mx-auto"
-    [currentPage]="paginatedPosts.pagination.page"
-    [totalPages]="paginatedPosts.pagination.pages"
-    (goTo)="onGoTo($event)"
-    (next)="onNext($event)"
-    (prev)="onPrev($event)"
-    *ngIf="paginatedPosts">
-  </app-post-paginator>
+    <app-post-paginator
+      class="mx-auto"
+      [currentPage]="paginatedPosts.pagination.page"
+      [totalPages]="paginatedPosts.pagination.pages"
+      (goTo)="onGoTo($event)"
+      (next)="onNext($event)"
+      (prev)="onPrev($event)"
+      *ngIf="paginatedPosts">
+    </app-post-paginator>
+  </section>
 </section>
 
 
