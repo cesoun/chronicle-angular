@@ -2,7 +2,7 @@
   <ul class="flex gap-x-2">
     <li>
       <button
-        class="btn sm:btn-sm btn-ghost"
+        class="btn btn-sm btn-ghost"
         [attr.aria-disabled]="currentPage === 1"
         [disabled]="currentPage === 1"
         (click)="onPrev()">
@@ -11,7 +11,7 @@
     </li>
     <li *ngFor="let page of pages">
       <button
-        class="btn btn-md sm:btn-sm"
+        class="btn btn-sm"
         [class.btn-accent]="page === currentPage"
         [class.btn-ghost]="page !== currentPage"
         (click)="onGoTo(page)">
@@ -20,7 +20,7 @@
     </li>
     <li>
       <button
-        class="btn sm:btn-sm btn-ghost"
+        class="btn btn-sm btn-ghost"
         [attr.aria-disabled]="currentPage === totalPages"
         [disabled]="currentPage === totalPages"
         (click)="onNext()">

@@ -13,7 +13,8 @@
   <div class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
     <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
        *ngFor="let post of this.paginatedPosts.posts">
-      <p class="capitalize">{{post.title | truncate:35:true}}</p>
+      <p class="capitalize md:hidden">{{post.title | truncate:18:true}}</p>
+      <p class="capitalize hidden md:block">{{post.title | truncate:35:true}}</p>
       <small class="font-light normal-case text-secondary">{{post.created_at | date}}</small>
     </a>
   </div>

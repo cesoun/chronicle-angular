@@ -8,7 +8,7 @@ import { PostService } from "../services/post/post.service";
 	styleUrls: ["./posts.component.css"],
 })
 export class PostsComponent implements OnInit {
-	limit: number = 2;
+	limit: number = 10;
 	orderby: string = "desc";
 
 	paginatedPosts?: PaginatedPosts;
