@@ -1,0 +1,14 @@
+<ul *ngIf="paginatedPosts">
+  <li *ngFor="let post of paginatedPosts.posts">
+    <p>{{post.title}} {{post.content}} {{post.created_at | date}}</p>
+  </li>
+</ul>
+
+<app-post-paginator
+  [currentPage]="paginatedPosts.pagination.page"
+  [totalPages]="paginatedPosts.pagination.pages"
+  (goTo)="onGoTo($event)"
+  (next)="onNext($event)"
+  (prev)="onPrev($event)"
+  *ngIf="paginatedPosts">
+</app-post-paginator>
