@@ -1,0 +1,70 @@
+<section class="grid place-content-center gap-8">
+  <article class="prose text-center">
+    <h1>Login</h1>
+    <p>
+      Welcome back! A lot has happened while you were gone, I think...
+    </p>
+    <hr class="bg-accent">
+  </article>
+
+  <!-- Error -->
+  <div class="alert alert-error shadow-lg" *ngIf="didError">
+    <div>
+      <p>{{this.errorMessage}}</p>
+    </div>
+  </div>
+  <!-- Form Invalid -->
+  <div class="alert alert-warning shadow-lg" *ngIf="isInvalid">
+    <div>
+      <p>Please check inputs and try again...</p>
+    </div>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" *ngIf="loginForm">
+    <!-- Username -->
+    <div class="form-control">
+      <label class="label" for="username">
+        <span class="label-text">Username</span>
+      </label>
+      <input [class.input-error]="loginForm.get('username')?.errors" [class.input-success]="!loginForm.get('username')?.errors" [maxlength]="usernameMax"
+             [minlength]="usernameMin"
+             [pattern]="usernamePattern"
+             class="input input-bordered"
+             formControlName="username"
+             id="username"
+             placeholder="superuser41"
+             required
+             type="text">
+      <label *ngIf="loginForm.get('username')?.errors" class="label" for="username">
+        <span class="label-text-alt text-error">Letters a-Z, 0-9 only please.</span>
+      </label>
+    </div>
+    <!-- Password -->
+    <div class="form-control">
+      <label class="label" for="password">
+        <span class="label-text">Password</span>
+        <span class="label-text-alt"><input (click)="togglePassword()" [checked]="showPassword" class="toggle toggle-xs"
+                                            type="checkbox"></span>
+      </label>
+      <input [class.input-error]="loginForm.get('password')?.errors" [class.input-success]="!loginForm.get('password')?.errors" [maxlength]="passwordMax"
+             [minlength]="passwordMin"
+             [pattern]="passwordPattern"
+             [type]="showPassword ? 'text' : 'password'"
+             class="input input-bordered"
+             formControlName="password"
+             id="password"
+             placeholder="********"
+             required>
+      <label *ngIf="loginForm.get('password')?.errors" class="label" for="password">
+        <span class="label-text-alt text-error">Need 3/4 of these: [0-9], [a-zA-Z], [`~!@#,...]. Len: 8-32</span>
+      </label>
+    </div>
+    <!-- Submit button -->
+    <div class="grid grid-cols-2 gap-12 pt-8">
+      <a routerLink="/signup" class="btn btn-ghost btn-outline">Sign-Up</a>
+      <button type="submit" class="btn btn-primary" [class.loading]="isBusy" [disabled]="this.isBusy || !loginForm.valid">
+        {{!isBusy ? 'Login' : ''}}
+      </button>
+    </div>
+  </form>
+</section>
