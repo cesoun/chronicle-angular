@@ -17,6 +17,7 @@ import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "./pages/login/login.component";
 import { JwtModule } from "@auth0/angular-jwt";
+import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 
 @NgModule({
 	declarations: [
@@ -32,6 +33,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 		TruncatePipe,
 		SignUpComponent,
 		LoginComponent,
+		UserProfileComponent,
 	],
 	imports: [
 		BrowserModule,

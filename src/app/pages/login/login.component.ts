@@ -96,8 +96,6 @@ export class LoginComponent implements OnInit {
 	 */
 	private onSuccess(token: TokenResponse): void {
 		this.tokenService.saveToken(token.token);
-
-		// TODO: Route to profile.
 		this.router.navigate([""]);
 	}
 

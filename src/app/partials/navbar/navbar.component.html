@@ -2,8 +2,8 @@
   <div class="flex-1">
     <div class="dropdown dropdown-hover">
       <a routerLink="" tabindex="0" class="btn btn-ghost normal-case text-xl">Chronicle</a>
-<!--      <label tabindex="0" class="btn btn-ghost normal-case text-xl">Chronicle</label>-->
-      <ul tabindex="0" class="p-2 shadow border-2 border-base-200/25 dropdown-content menu menu-compact bg-base-100 w-52">
+      <ul tabindex="0"
+          class="p-2 shadow border-2 border-base-200/25 dropdown-content menu menu-compact bg-base-100 w-52">
         <li>
           <a routerLink="" class="justify-start">Home</a>
         </li>
@@ -20,14 +20,15 @@
 
     <!-- login / sign-up + Collapse -->
     <div *ngIf="!(this.authService.isLoggedIn | async)">
-      <div class="hidden md:block md:flex" >
+      <div class="hidden md:block md:flex">
         <a routerLink="/signup" class="btn btn-ghost">Sign-Up</a>
         <a routerLink="/login" class="btn btn-ghost">Login</a>
       </div>
 
       <div class="dropdown dropdown-hover dropdown-end md:hidden">
         <label tabindex="0" class="btn btn-ghost"><i class="fa-bars fa-solid"></i></label>
-        <ul tabindex="0" class="p-2 shadow border-2 border-base-200/25 dropdown-content menu menu-compact bg-base-100 w-52">
+        <ul tabindex="0"
+            class="p-2 shadow border-2 border-base-200/25 dropdown-content menu menu-compact bg-base-100 w-52">
           <li>
             <a routerLink="/signup" class="justify-start">Sign-Up</a>
           </li>
@@ -38,11 +39,20 @@
       </div>
     </div>
 
+    <!--    New post button -->
+    <div class="tooltip tooltip-bottom" data-tip="new post">
+      <a routerLink="/posts/new" class="btn btn-ghost" *ngIf="this.authService.isLoggedIn | async"><i
+        class="fa-solid fa-plus"></i></a>
+    </div>
+
+    <!--    Profile menu -->
     <div class="dropdown dropdown-hover dropdown-end" *ngIf="this.authService.isLoggedIn | async">
       <label tabindex="0" class="btn btn-ghost"><i class="fa-solid fa-user"></i></label>
-      <ul tabindex="0" class="p-2 shadow border-2 border-base-200/25 menu menu-compact dropdown-content bg-base-100 w-52">
+      <ul tabindex="0"
+          class="p-2 shadow border-2 border-base-200/25 menu menu-compact dropdown-content bg-base-100 w-52">
         <li>
-          <a routerLink="/settings" class="justify-between">Profile<i class="fa-solid fa-user"></i></a>
+          <a routerLink="/profile/{{this.authService.getUsernameFromToken()}}" class="justify-between">Profile<i
+            class="fa-solid fa-user"></i></a>
         </li>
         <li>
           <a routerLink="/settings" class="justify-between">Settings<i class="fa-solid fa-gear"></i></a>

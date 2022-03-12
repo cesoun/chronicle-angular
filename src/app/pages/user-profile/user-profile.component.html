@@ -1,0 +1,33 @@
+<!-- Loading Spinner -->
+<!-- Alert if we can find the User -->
+<!-- Content after successful load -->
+
+<section class="flex flex-col basis-full">
+  <div class="alert alert-error shadow-lg" *ngIf="didError">
+    <div>
+      <span>{{errorMessage}}</span>
+    </div>
+  </div>
+
+  <button class="btn btn-ghost loading" *ngIf="!user && isLoading"></button>
+
+
+  <section *ngIf="user" class="mx-auto text-center sm:w-1/2 w-full">
+    <h1 class="text-3xl pb-4">{{user.username}}</h1>
+    <ul class="text-sm pb-4 text-center text-secondary">
+      <li>id: {{user.id}}</li>
+      <li>role: {{user.role}}</li>
+      <li *ngIf="user.first_name && user.last_name">Full: {{user.first_name + ' ' + user.last_name}}</li>
+      <li *ngIf="user.first_name && !user.last_name">First: {{user.first_name}}</li>
+      <li *ngIf="!user.first_name && user.last_name">Last: {{user.last_name}}</li>
+    </ul>
+    <a routerLink="edit" *ngIf="this.authService.getUsernameFromToken() === user.username" class="btn btn-sm btn-info">Edit</a>
+  </section>
+
+<!--  TODO: Recent posts for Username -->
+<!--  Update post-paginator to take in a username or id -->
+  <app-recent-posts></app-recent-posts>
+
+</section>
+
+
