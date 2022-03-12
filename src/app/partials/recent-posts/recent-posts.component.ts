@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { PostService } from "../../services/post/post.service";
-import PaginatedPosts from "../../core/interfaces/paginated-posts";
-import Post from "../../core/interfaces/post";
-import post from "../../core/interfaces/post";
+import { PaginatedPosts } from "../../core/interfaces/api/posts";
 
 @Component({
 	selector: "app-recent-posts",

@@ -1,15 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import PaginatedPosts from "../../core/interfaces/paginated-posts";
+import { ChronicleConfig } from "../../config/config";
+import { PaginatedPosts } from "../../core/interfaces/api/posts";
 
 @Injectable({
 	providedIn: "root",
 })
 export class PostService {
-	private API: string = "https://api.heckin.dev";
-
 	constructor(private http: HttpClient) {}
-
 	/**
 	 * Get the posts with the page, limit and orderby query params.
 	 * @param page What page to start from
@@ -24,7 +22,7 @@ export class PostService {
 			.set("orderby", orderby);
 
 		this.http
-			.get<PaginatedPosts>(`${this.API}/post`, { params })
+			.get<PaginatedPosts>(`${ChronicleConfig.API}/post`, { params })
 			.subscribe((posts: PaginatedPosts) => {
 				cb(posts, null);
 			});

@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { matchValidator } from "../../core/validators/form-validators";
+import { AuthService } from "../../services/auth/auth.service";
+import { TokenResponse } from "../../core/interfaces/api/tokens";
+import { ErrorResponse } from "../../core/interfaces/api/errors";
+import { TokenService } from "../../services/token/token.service";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-sign-up",
@@ -27,8 +32,14 @@ export class SignUpComponent implements OnInit {
 	isBusy: boolean = false;
 	isInvalid: boolean = false;
 	didError: boolean = false;
+	errorMessage: string = "";
 
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		private router: Router,
+		private authService: AuthService,
+		private tokenService: TokenService
+	) {}
 
 	ngOnInit(): void {
 		this.signupForm = this.fb.group({
@@ -84,7 +95,43 @@ export class SignUpComponent implements OnInit {
 			return;
 		}
 
-		// TODO: Register our user.
-		setTimeout(() => (this.isBusy = false), 1000, false);
+		const username = this.signupForm.get("username")?.value;
+		const email = this.signupForm.get("email")?.value;
+		const password = this.signupForm.get("password")?.value;
+
+		this.authService.register(username, password, email).subscribe({
+			next: this.onSuccess.bind(this),
+			error: this.onError.bind(this),
+		});
+	}
+
+	/**
+	 * Handler for registration success.
+	 * @param token
+	 * @private
+	 */
+	private onSuccess(token: TokenResponse): void {
+		this.tokenService.saveToken(token.token);
+
+		// TODO: Route to profile.
+		this.router.navigate([""]);
+	}
+
+	/**
+	 * Handler for registration error.
+	 * @param err
+	 * @private
+	 */
+	private onError(err: any): void {
+		if (err.status === 404) {
+			const errRes: ErrorResponse = err.error as ErrorResponse;
+			this.didError = errRes.error;
+			this.errorMessage = errRes.message;
+		} else {
+			this.didError = true;
+			this.errorMessage = `Uh oh! A ${err.status} status code occurred...`;
+		}
+
+		this.isBusy = false;
 	}
 }
