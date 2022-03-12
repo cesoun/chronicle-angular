@@ -15,6 +15,7 @@ import { PostPaginatorComponent } from "./partials/post-paginator/post-paginator
 import { TruncatePipe } from "./pipes/truncate/truncate.pipe";
 import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from "./pages/login/login.component";
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 		PostPaginatorComponent,
 		TruncatePipe,
 		SignUpComponent,
+		LoginComponent,
 	],
 	imports: [
 		BrowserModule,
