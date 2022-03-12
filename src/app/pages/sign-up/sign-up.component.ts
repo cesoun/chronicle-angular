@@ -102,6 +102,7 @@ export class SignUpComponent implements OnInit {
 		this.authService.register(username, password, email).subscribe({
 			next: this.onSuccess.bind(this),
 			error: this.onError.bind(this),
+			complete: () => this.authService.setLoggedIn(true),
 		});
 	}
 

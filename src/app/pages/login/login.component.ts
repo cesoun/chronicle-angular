@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(username, password).subscribe({
 			next: this.onSuccess.bind(this),
 			error: this.onError.bind(this),
+			complete: () => this.authService.setLoggedIn(true),
 		});
 	}
 

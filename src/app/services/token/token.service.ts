@@ -24,7 +24,7 @@ export class TokenService {
 	 * Clear the session when we logout.
 	 */
 	logout(): void {
-		window.sessionStorage.clear();
+		sessionStorage.clear();
 	}
 
 	/**
@@ -32,13 +32,13 @@ export class TokenService {
 	 * @param token
 	 */
 	public saveToken(token: string): void {
-		window.sessionStorage.setItem("JWT", token);
+		sessionStorage.setItem("access_token", token);
 	}
 
 	/**
 	 * Reads the token from session storage or returns null if missing
 	 */
 	public getToken(): string | null {
-		return window.sessionStorage.getItem("JWT");
+		return sessionStorage.getItem("access_token");
 	}
 }

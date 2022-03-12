@@ -1,15 +1,38 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { User } from "../../core/interfaces/api/users";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ChronicleConfig } from "../../config/config";
 import { TokenResponse } from "../../core/interfaces/api/tokens";
+import { TokenService } from "../token/token.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
 	providedIn: "root",
 })
 export class AuthService {
-	constructor(private http: HttpClient) {}
+	// User state.
+	private _isLoggedIn: BehaviorSubject<Boolean> =
+		new BehaviorSubject<Boolean>(false);
+	public isLoggedIn: BehaviorSubject<Boolean> = this._isLoggedIn;
+
+	constructor(private http: HttpClient, private tokenService: TokenService) {
+		const token = tokenService.getToken();
+
+		if (!token) {
+			this.setLoggedIn(false);
+		}
+
+		// If token is not expired, true, else false.
+		this.setLoggedIn(!new JwtHelperService().isTokenExpired(token!));
+	}
+
+	/**
+	 * Update the value of isLoggedIn.
+	 * @param value
+	 */
+	setLoggedIn(value: boolean): void {
+		this._isLoggedIn.next(value);
+	}
 
 	/**
 	 * Login with a given username and password.

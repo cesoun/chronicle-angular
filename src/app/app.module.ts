@@ -16,6 +16,7 @@ import { TruncatePipe } from "./pipes/truncate/truncate.pipe";
 import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "./pages/login/login.component";
+import { JwtModule } from "@auth0/angular-jwt";
 
 @NgModule({
 	declarations: [
@@ -36,6 +37,16 @@ import { LoginComponent } from "./pages/login/login.component";
 		BrowserModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: () => {
+					return sessionStorage.getItem("access_token");
+				},
+				allowedDomains: [new RegExp(`.*heckin.dev/?.*`)],
+				// Ignoring domains is somewhat rough. We re-use them for get/put/post ...
+				// For now, it will just strap up the token to everything when it can.
+			},
+		}),
 		AppRoutingModule,
 	],
 	providers: [],

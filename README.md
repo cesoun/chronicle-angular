@@ -8,6 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [@tailwind/typography](https://tailwindcss.com/docs/typography-plugin#adapting-to-dark-mode)
 [daisyui](https://daisyui.com)
 [@fortawesome/fontawesome-free](https://fontawesome.com)
+[@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt)
 
 ## Development server
 
