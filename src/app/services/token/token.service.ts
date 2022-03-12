@@ -24,7 +24,7 @@ export class TokenService {
 	 * Clear the session when we logout.
 	 */
 	logout(): void {
-		sessionStorage.clear();
+		localStorage.removeItem("access_token");
 	}
 
 	/**
@@ -32,13 +32,13 @@ export class TokenService {
 	 * @param token
 	 */
 	public saveToken(token: string): void {
-		sessionStorage.setItem("access_token", token);
+		localStorage.setItem("access_token", token);
 	}
 
 	/**
 	 * Reads the token from session storage or returns null if missing
 	 */
 	public getToken(): string | null {
-		return sessionStorage.getItem("access_token");
+		return localStorage.getItem("access_token");
 	}
 }
