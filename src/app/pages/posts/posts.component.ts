@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import PaginatedPosts from "../core/interfaces/paginated-posts";
-import { PostService } from "../services/post/post.service";
+import { PostService } from "../../services/post/post.service";
+import { PaginatedPosts } from "../../core/interfaces/api/posts";
 
 @Component({
 	selector: "app-posts",
