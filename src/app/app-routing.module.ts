@@ -4,6 +4,7 @@ import { IndexComponent } from "./pages/index/index.component";
 import { PostsComponent } from "./pages/posts/posts.component";
 import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { LoginComponent } from "./pages/login/login.component";
+import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
 
 const routes: Routes = [
 	{

@@ -11,9 +11,9 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class AuthService {
 	// User state.
-	private _isLoggedIn: BehaviorSubject<Boolean> =
-		new BehaviorSubject<Boolean>(false);
-	public isLoggedIn: BehaviorSubject<Boolean> = this._isLoggedIn;
+	private _isLoggedIn: BehaviorSubject<boolean> =
+		new BehaviorSubject<boolean>(false);
+	public isLoggedIn: BehaviorSubject<boolean> = this._isLoggedIn;
 
 	constructor(private http: HttpClient, private tokenService: TokenService) {
 		const token = tokenService.getToken();
