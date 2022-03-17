@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
 	 * @private
 	 */
 	private onSuccess(token: TokenResponse): void {
-		this.tokenService.saveToken(token.token);
+		this.tokenService.saveToken(token.access);
 		this.router.navigate([""]);
 	}
 
@@ -105,15 +105,9 @@ export class LoginComponent implements OnInit {
 	 * @private
 	 */
 	private onError(err: any): void {
-		if (err.status === 404) {
-			const errRes: ErrorResponse = err.error as ErrorResponse;
-			this.didError = errRes.error;
-			this.errorMessage = errRes.message;
-		} else {
-			this.didError = true;
-			this.errorMessage = `Uh oh! A ${err.status} status code occurred...`;
-		}
-
+		const errRes: ErrorResponse = err.error as ErrorResponse;
+		this.didError = errRes.error;
+		this.errorMessage = errRes.msg;
 		this.isBusy = false;
 	}
 }

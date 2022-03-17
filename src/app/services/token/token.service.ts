@@ -11,6 +11,7 @@ import { Injectable } from "@angular/core";
     sub: string (username)
     iat: number (issued at)
     exp: number (expires at)
+    // scopes ...
   }
  */
 
@@ -24,7 +25,7 @@ export class TokenService {
 	 * Clear the session when we logout.
 	 */
 	logout(): void {
-		localStorage.removeItem("access_token");
+		localStorage.removeItem("access");
 	}
 
 	/**
@@ -32,13 +33,13 @@ export class TokenService {
 	 * @param token
 	 */
 	public saveToken(token: string): void {
-		localStorage.setItem("access_token", token);
+		localStorage.setItem("access", token);
 	}
 
 	/**
 	 * Reads the token from session storage or returns null if missing
 	 */
 	public getToken(): string | null {
-		return localStorage.getItem("access_token");
+		return localStorage.getItem("access");
 	}
 }

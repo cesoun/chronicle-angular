@@ -47,12 +47,12 @@ export class UserProfileComponent implements OnInit {
 
 	private onError(err: any): void {
 		if (err.status === 404) {
+			this.didError = true;
+			this.errorMessage = `no user found`;
+		} else {
 			const errRes: ErrorResponse = err.error as ErrorResponse;
 			this.didError = errRes.error;
-			this.errorMessage = errRes.message;
-		} else {
-			this.didError = true;
-			this.errorMessage = `Uh oh! A ${err.status} status code occurred...`;
+			this.errorMessage = errRes.msg;
 		}
 
 		this.isLoading = false;

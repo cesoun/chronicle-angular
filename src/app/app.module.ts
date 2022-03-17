@@ -42,7 +42,7 @@ import { UserProfileComponent } from "./pages/user-profile/user-profile.componen
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: () => {
-					return localStorage.getItem("access_token");
+					return localStorage.getItem("access");
 				},
 				allowedDomains: [new RegExp(`.*heckin.dev/?.*`)],
 				// Ignoring domains is somewhat rough. We re-use them for get/put/post ...

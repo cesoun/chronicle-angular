@@ -9,20 +9,18 @@ import { PaginatedPosts } from "../../core/interfaces/api/posts";
 export class PostService {
 	constructor(private http: HttpClient) {}
 	/**
-	 * Get the posts with the page, limit and orderby query params.
-	 * @param page What page to start from
+	 * Get the post with the limit and offset
 	 * @param limit Number of elements to return
-	 * @param orderby Ordering by 'created_date': asc,desc
+	 * @param offset Number of elements to offset
 	 * @param cb Callback function (PaginatedPost[]|null, Error|null)
 	 */
-	getPosts(page: number, limit: number, orderby: string, cb: Function) {
+	getPosts(limit: number, offset: number, cb: Function) {
 		const params = new HttpParams()
-			.set("page", page)
 			.set("limit", limit)
-			.set("orderby", orderby);
+			.set("offset", offset);
 
 		this.http
-			.get<PaginatedPosts>(`${ChronicleConfig.API}/post`, { params })
+			.get<PaginatedPosts>(`${ChronicleConfig.API}/posts`, { params })
 			.subscribe((posts: PaginatedPosts) => {
 				cb(posts, null);
 			});

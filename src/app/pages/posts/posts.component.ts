@@ -9,28 +9,26 @@ import { PaginatedPosts } from "../../core/interfaces/api/posts";
 })
 export class PostsComponent implements OnInit {
 	limit: number = 10;
-	orderby: string = "desc";
+	offset: number = 0;
 
 	paginatedPosts?: PaginatedPosts;
 
 	constructor(private postService: PostService) {}
 
 	ngOnInit(): void {
-		this.getPosts(1, this.limit, this.orderby);
+		this.getPosts(this.limit, this.offset);
 	}
 
 	/**
 	 * Wrapper for postService
-	 * @param page
 	 * @param limit
-	 * @param orderby
+	 * @param offset
 	 * @private
 	 */
-	private getPosts(page: number, limit: number, orderby: string): void {
+	private getPosts(limit: number, offset: number): void {
 		this.postService.getPosts(
-			page,
 			limit,
-			orderby,
+			offset,
 			this.getPostsCallback.bind(this)
 		);
 	}
@@ -46,26 +44,18 @@ export class PostsComponent implements OnInit {
 	}
 
 	/**
-	 * Go to specific page.
-	 * @param page
+	 * Go to next offset.
 	 */
-	public onGoTo(page: number): void {
-		this.getPosts(page, this.limit, this.orderby);
+	public onNext(): void {
+		this.offset += this.limit;
+		this.getPosts(this.limit, this.offset);
 	}
 
 	/**
-	 * Go to next page.
-	 * @param page
+	 * Got to previous offset.
 	 */
-	public onNext(page: number): void {
-		this.getPosts(page + 1, this.limit, this.orderby);
-	}
-
-	/**
-	 * Got to previous page.
-	 * @param page
-	 */
-	public onPrev(page: number): void {
-		this.getPosts(page - 1, this.limit, this.orderby);
+	public onPrev(): void {
+		this.offset -= this.limit;
+		this.getPosts(this.limit, this.offset);
 	}
 }

@@ -11,6 +11,8 @@ export class UserService {
 	constructor(private http: HttpClient) {}
 
 	getUserByUsername(username: string): Observable<User> {
-		return this.http.get<User>(`${ChronicleConfig.API}/user/${username}`);
+		return this.http.get<User>(
+			`${ChronicleConfig.API}/user/username/${username}`
+		);
 	}
 }

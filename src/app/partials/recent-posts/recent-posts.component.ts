@@ -8,9 +8,8 @@ import { PaginatedPosts } from "../../core/interfaces/api/posts";
 	styleUrls: ["./recent-posts.component.css"],
 })
 export class RecentPostsComponent implements OnInit {
-	@Input() page?: number;
 	@Input() limit?: number;
-	@Input() orderby?: string;
+	@Input() offset?: number;
 
 	paginatedPosts?: PaginatedPosts;
 
@@ -18,9 +17,8 @@ export class RecentPostsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.postService.getPosts(
-			this.page || 1,
 			this.limit || 10,
-			this.orderby || "desc",
+			this.offset || 0,
 			(pp: PaginatedPosts, err: Error | null) => {
 				this.paginatedPosts = pp;
 			}
