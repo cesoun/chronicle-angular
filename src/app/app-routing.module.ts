@@ -4,7 +4,7 @@ import { IndexComponent } from "./pages/index/index.component";
 import { PostsComponent } from "./pages/posts/posts.component";
 import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
+import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 
 const routes: Routes = [
 	{
@@ -23,6 +23,17 @@ const routes: Routes = [
 		path: "login",
 		component: LoginComponent,
 	},
+	{
+		path: "profile/:username",
+		component: UserProfileComponent,
+	},
+	// {
+	//   path: "profile/:username/settings",
+	// }
+	// {
+	// 	path: "posts/new",
+	// 	component: PostsComponent,
+	// },
 ];
 
 @NgModule({

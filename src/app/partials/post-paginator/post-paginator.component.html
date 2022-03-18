@@ -1,28 +1,19 @@
-<nav aria-label="pagination">
+<nav aria-label="pagination" *ngIf="totalItems > 0">
   <ul class="flex gap-x-2">
     <li>
       <button
         class="btn btn-sm btn-ghost"
-        [attr.aria-disabled]="currentPage === 1"
-        [disabled]="currentPage === 1"
+        [attr.aria-disabled]="currentOffset === 0"
+        [disabled]="currentOffset === 0"
         (click)="onPrev()">
         <i class="fa-solid fa-arrow-left"></i>
-      </button>
-    </li>
-    <li *ngFor="let page of pages">
-      <button
-        class="btn btn-sm"
-        [class.btn-accent]="page === currentPage"
-        [class.btn-ghost]="page !== currentPage"
-        (click)="onGoTo(page)">
-        {{page}}
       </button>
     </li>
     <li>
       <button
         class="btn btn-sm btn-ghost"
-        [attr.aria-disabled]="currentPage === totalPages"
-        [disabled]="currentPage === totalPages"
+        [attr.aria-disabled]="currentOffset >= totalItems || currentOffset+currentLimit >= totalItems"
+        [disabled]="currentOffset >= totalItems || currentOffset+currentLimit >= totalItems"
         (click)="onNext()">
         <i class="fa-solid fa-arrow-right"></i>
       </button>

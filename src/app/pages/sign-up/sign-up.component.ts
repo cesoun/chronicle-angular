@@ -37,8 +37,7 @@ export class SignUpComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private router: Router,
-		private authService: AuthService,
-		private tokenService: TokenService
+		private authService: AuthService
 	) {}
 
 	ngOnInit(): void {
@@ -112,10 +111,7 @@ export class SignUpComponent implements OnInit {
 	 * @private
 	 */
 	private onSuccess(token: TokenResponse): void {
-		this.tokenService.saveToken(token.token);
-
-		// TODO: Route to profile.
-		this.router.navigate([""]);
+		this.router.navigate(["/login"]);
 	}
 
 	/**
@@ -124,15 +120,9 @@ export class SignUpComponent implements OnInit {
 	 * @private
 	 */
 	private onError(err: any): void {
-		if (err.status === 404) {
-			const errRes: ErrorResponse = err.error as ErrorResponse;
-			this.didError = errRes.error;
-			this.errorMessage = errRes.message;
-		} else {
-			this.didError = true;
-			this.errorMessage = `Uh oh! A ${err.status} status code occurred...`;
-		}
-
+		const errRes: ErrorResponse = err.error as ErrorResponse;
+		this.didError = errRes.error;
+		this.errorMessage = errRes.msg;
 		this.isBusy = false;
 	}
 }

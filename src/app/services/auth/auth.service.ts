@@ -26,6 +26,18 @@ export class AuthService {
 		this.setLoggedIn(!new JwtHelperService().isTokenExpired(token!));
 	}
 
+	getUsernameFromToken(): string {
+		const token = this.tokenService.getToken();
+		if (!token) {
+			return "???";
+		}
+
+		const decodedToken = new JwtHelperService().decodeToken(token);
+		const username = decodedToken["sub"];
+
+		return username ? username : "???";
+	}
+
 	/**
 	 * Update the value of isLoggedIn.
 	 * @param value
