@@ -16,12 +16,19 @@ export class RecentPostsComponent implements OnInit {
 	constructor(private postService: PostService) {}
 
 	ngOnInit(): void {
-		this.postService.getPosts(
-			this.limit || 10,
-			this.offset || 0,
-			(pp: PaginatedPosts, err: Error | null) => {
-				this.paginatedPosts = pp;
-			}
-		);
+		this.postService
+			.getPosts(this.limit || 10, this.offset || 0)
+			.subscribe({
+				next: this.onSuccess.bind(this),
+			});
+	}
+
+	/**
+	 * Handler for Posts success.
+	 * @param pp PaginatedPosts
+	 * @private
+	 */
+	private onSuccess(pp: PaginatedPosts): void {
+		this.paginatedPosts = pp;
 	}
 }

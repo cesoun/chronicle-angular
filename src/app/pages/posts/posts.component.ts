@@ -26,20 +26,17 @@ export class PostsComponent implements OnInit {
 	 * @private
 	 */
 	private getPosts(limit: number, offset: number): void {
-		this.postService.getPosts(
-			limit,
-			offset,
-			this.getPostsCallback.bind(this)
-		);
+		this.postService.getPosts(limit, offset).subscribe({
+			next: this.onSuccess.bind(this),
+		});
 	}
 
 	/**
-	 * Callback wrapper for getPosts
-	 * @param pp
-	 * @param err
+	 * Handler for Posts success.
+	 * @param pp PaginatedPosts
 	 * @private
 	 */
-	private getPostsCallback(pp: PaginatedPosts, err: Error | null): void {
+	private onSuccess(pp: PaginatedPosts): void {
 		this.paginatedPosts = pp;
 	}
 

@@ -1,13 +1,13 @@
-<section class="flex flex-col max-w-prose mx-auto gap-10">
+<section class="flex flex-col max-w-prose mx-auto">
   <div class="alert alert-error shadow-lg" *ngIf="didError">
     <div>
       <span>{{errorMessage}}</span>
     </div>
   </div>
 
-  <button class="btn btn-ghost loading" *ngIf="!user && isLoading"></button>
-
-  <article class="prose prose-ul:list-none prose-a:no-underline" *ngIf="!didError && user">
+  <!-- User Banner -->
+  <button class="btn btn-ghost loading" *ngIf="!user && isLoadingUser"></button>
+  <article class="prose prose-ul:list-none prose-ul:p-0 prose-a:no-underline text-center" *ngIf="!didError && user">
     <h1 class="text-3xl">{{user.username}}</h1>
     <ul class="text-sm text-secondary">
       <li>id: {{user.id}}</li>
@@ -18,11 +18,46 @@
     </ul>
   </article>
 
-  <div>
-    <a routerLink="edit" *ngIf="user && this.authService.getUsernameFromToken() === user.username" class="btn btn-sm btn-info">Edit</a>
+  <!-- User Edit -->
+  <!-- TODO: User Edit Always Shown if Admin -->
+  <div class="flex justify-center" *ngIf="user && this.authService.getUsernameFromToken() === user.username">
+    <a routerLink="edit"  class="btn btn-sm btn-ghost">Edit</a>
   </div>
 
-  <app-recent-posts></app-recent-posts>
+  <!-- Recent Posts Divider -->
+  <section *ngIf="user" class="pt-4">
+    <h1>Recent Posts</h1>
+    <hr class="border-accent">
+  </section>
+
+  <!-- Post Pagination -->
+  <button class="btn btn-ghost loading" *ngIf="!paginatedPosts && !isLoadingPosts"></button>
+  <section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
+    <div *ngIf="paginatedPosts.count === 0">
+      <p>No posts!</p>
+    </div>
+
+    <!-- Posts + Loading -->
+    <button class="btn btn-ghost loading" *ngIf="isLoadingPosts"></button>
+    <div *ngIf="!isLoadingPosts">
+      <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
+         *ngFor="let post of paginatedPosts.items">
+        <p class="capitalize md:hidden">{{post.title | truncate:18:true}}</p>
+        <p class="capitalize hidden md:block">{{post.title | truncate:35:true}}</p>
+        <small class="font-light normal-case text-secondary">{{post.created_at | date}}</small>
+      </a>
+    </div>
+
+    <app-post-paginator
+      class="mx-auto"
+      [currentOffset]="offset"
+      [currentLimit]="limit"
+      [totalItems]="paginatedPosts.count"
+      (next)="onNext()"
+      (prev)="onPrev()"
+      *ngIf="paginatedPosts">
+    </app-post-paginator>
+  </section>
 </section>
 
 
