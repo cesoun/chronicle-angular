@@ -199,7 +199,7 @@ export class UserEditComponent implements OnInit {
 
 		this.userService.putUserById(this.user!.id!, userUpdate).subscribe({
 			next: this.onPutSuccess.bind(this),
-			error: this.onPutError.bind(this),
+			error: this.onPutOrDeleteError.bind(this),
 		});
 	}
 
@@ -221,9 +221,10 @@ export class UserEditComponent implements OnInit {
 	 * Handler for puUserById error.
 	 * @param err
 	 */
-	onPutError(err: any): void {
+	onPutOrDeleteError(err: any): void {
 		if (err.status === 401) {
-			this.errorMessage = "Unauthorized, potential password mismatch";
+			this.errorMessage =
+				"Unauthorized, potential password or JWT mismatch";
 		} else {
 			const errMsg: ErrorResponse = err.error as ErrorResponse;
 			this.errorMessage = errMsg.msg;
@@ -231,5 +232,33 @@ export class UserEditComponent implements OnInit {
 
 		this.isBusy = false;
 		this.didError = true;
+	}
+
+	/**
+	 * Handle user delete.
+	 */
+	onUserDelete(): void {
+		this.isBusy = true;
+
+		// Confirm the User is trying to delete.
+		if (!confirm("Are you sure? This action cannot be undone.")) {
+			this.isBusy = false;
+			return;
+		}
+
+		this.userService.deleteUserById(this.user!.id!).subscribe({
+			next: this.onDeleteSuccess.bind(this),
+			error: this.onPutOrDeleteError.bind(this),
+		});
+	}
+
+	/**
+	 * Success Handler for onDelete
+	 * @param obj
+	 */
+	onDeleteSuccess(obj: object): void {
+		this.tokenService.logout();
+		this.authService.setLoggedIn(false);
+		this.router.navigate(["/login"]);
 	}
 }

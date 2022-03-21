@@ -142,7 +142,9 @@
 
     <!-- Submit button -->
     <div class="grid grid-cols-2 gap-12 pt-8">
-      <button type="submit" class="btn btn-primary col-end-3" [class.loading]="isBusy" [disabled]="this.isBusy || !settingsForm.valid">
+      <button type="button" class="btn btn-error" (click)="onUserDelete()" [class.loading]="isBusy" [disabled]="this.isBusy"
+      >{{!isBusy ? 'Delete Account' : ''}}</button>
+      <button type="submit" class="btn btn-primary" [class.loading]="isBusy" [disabled]="this.isBusy || !settingsForm.valid">
         {{!isBusy ? 'Update' : ''}}
       </button>
     </div>

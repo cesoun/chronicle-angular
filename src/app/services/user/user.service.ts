@@ -20,7 +20,28 @@ export class UserService {
 		);
 	}
 
+	/**
+	 * Get a User by Id
+	 * @param id
+	 */
+	getUserById(id: number): Observable<User> {
+		return this.http.get<User>(`${ChronicleConfig.API}/user/id/${id}`);
+	}
+
+	/**
+	 * Put a User by Id
+	 * @param id
+	 * @param body
+	 */
 	putUserById(id: number, body: UserUpdate): Observable<object> {
 		return this.http.put(`${ChronicleConfig.API}/user/id/${id}`, body);
+	}
+
+	/**
+	 * Delete a User by Id.
+	 * @param id
+	 */
+	deleteUserById(id: number): Observable<object> {
+		return this.http.delete(`${ChronicleConfig.API}/user/id/${id}`);
 	}
 }
