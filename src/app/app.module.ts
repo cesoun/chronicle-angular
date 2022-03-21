@@ -22,6 +22,7 @@ import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
 import { BlogViewComponent } from "./pages/blog-view/blog-view.component";
 import { UnifiedPipe } from "./pipes/unified/unified.pipe";
+import { BlogEditComponent } from "./pages/blog-edit/blog-edit.component";
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import { UnifiedPipe } from "./pipes/unified/unified.pipe";
 		BlogCreateComponent,
 		BlogViewComponent,
 		UnifiedPipe,
+		BlogEditComponent,
 	],
 	imports: [
 		BrowserModule,

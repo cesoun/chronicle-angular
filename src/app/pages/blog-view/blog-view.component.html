@@ -3,6 +3,10 @@
   <!-- Loading -->
   <button class="btn btn-ghost loading" *ngIf="isLoading"></button>
 
+  <!-- Edit Button -->
+  <a routerLink="edit" class="btn btn-sm btn-ghost" *ngIf="user && this.authService.getUsernameFromToken() === user.username">Edit</a>
+
+  <!-- Article -->
   <article class="prose py-12" *ngIf="post && user">
     <h4>{{post.title}}</h4>
     <p>
@@ -17,7 +21,6 @@
     <span id="content">
       {{post.content | unified:'content' | async}}
     </span>
-
   </article>
 
 </section>

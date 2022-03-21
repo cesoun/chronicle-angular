@@ -9,6 +9,7 @@ import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
 import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
 import { BlogViewComponent } from "./pages/blog-view/blog-view.component";
+import { BlogEditComponent } from "./pages/blog-edit/blog-edit.component";
 
 const routes: Routes = [
 	{
@@ -44,6 +45,11 @@ const routes: Routes = [
 	{
 		path: "post/:id",
 		component: BlogViewComponent,
+	},
+	{
+		path: "post/:id/edit",
+		component: BlogEditComponent,
+		canActivate: [IsAuthenticatedGuard],
 	},
 ];
 
