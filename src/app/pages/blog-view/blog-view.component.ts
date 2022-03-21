@@ -5,6 +5,7 @@ import { UserService } from "../../services/user/user.service";
 import { Post } from "../../core/interfaces/api/posts";
 import { User } from "../../core/interfaces/api/users";
 import { ErrorResponse } from "../../core/interfaces/api/errors";
+import { AuthService } from "../../services/auth/auth.service";
 
 @Component({
 	selector: "app-blog-view",
@@ -21,6 +22,7 @@ export class BlogViewComponent implements OnInit {
 	post?: Post;
 
 	constructor(
+		public authService: AuthService,
 		private postService: PostService,
 		private route: ActivatedRoute,
 		private router: Router,
@@ -44,6 +46,10 @@ export class BlogViewComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * Handle getPostById success.
+	 * @param post
+	 */
 	onPostSuccess(post: Post): void {
 		this.post = post;
 
@@ -53,6 +59,10 @@ export class BlogViewComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * Handle getPostById error.
+	 * @param err
+	 */
 	onPostError(err: any): void {
 		if (err.status === 404) {
 			this.errorMessage = "Post not found...";
@@ -64,11 +74,19 @@ export class BlogViewComponent implements OnInit {
 		this.didError = true;
 	}
 
+	/**
+	 * Handle getUserById success.
+	 * @param user
+	 */
 	onUserSuccess(user: User): void {
 		this.user = user;
 		this.isLoading = false;
 	}
 
+	/**
+	 * Handle getUserById error.
+	 * @param err
+	 */
 	onUserError(err: any): void {
 		if (err.status === 404) {
 			this.errorMessage = "Post not found...";
