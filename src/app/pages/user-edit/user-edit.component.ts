@@ -77,6 +77,14 @@ export class UserEditComponent implements OnInit {
 	onGetSuccess(user: User): void {
 		this.user = user;
 
+		if (user.username !== this.authService.getUsernameFromToken()) {
+			this.errorMessage = "Account belongs to someone else";
+			this.didError = true;
+			this.isBusy = false;
+			this.isLoadingUser = false;
+			return;
+		}
+
 		this.settingsForm = this.fb.group({
 			username: [
 				user.username,
