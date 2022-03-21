@@ -1,0 +1,23 @@
+<section class="flex flex-col max-w-prose mx-auto">
+
+  <!-- Loading -->
+  <button class="btn btn-ghost loading" *ngIf="isLoading"></button>
+
+  <article class="prose py-12" *ngIf="post && user">
+    <h4>{{post.title}}</h4>
+    <p>
+      <small>Author: <a [routerLink]="['/profile', user.username]">{{user.username}}</a></small>
+      <br>
+      <small>Created on: {{post.created_at | date}}</small>
+      <br>
+      <small *ngIf="post.modified_at">Updated on: {{post.modified_at | date}}</small>
+    </p>
+    <hr class="bg-accent">
+
+    <span id="content">
+      {{post.content | unified:'content' | async}}
+    </span>
+
+  </article>
+
+</section>

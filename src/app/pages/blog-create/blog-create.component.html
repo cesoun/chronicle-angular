@@ -71,8 +71,8 @@
       <label
         for="preview-modal"
         [class.loading]="isBusy"
-        class="btn btn-ghost col-end-4"
-        (click)="doLoadPreview()">{{isBusy ? "" : "Preview"}}</label>
+        class="btn btn-ghost col-end-4">
+        {{isBusy ? "" : "Preview"}}</label>
       <button
         type="submit"
         [disabled]="isBusy || !postForm.valid"
@@ -85,8 +85,8 @@
   <input type="checkbox" name="preview-modal" id="preview-modal" class="modal-toggle">
   <label for="preview-modal" class="modal cursor-pointer modal-bottom sm:modal-middle">
     <label for="" class="modal-box relative max-w-prose">
-      <article id="preview-output" class="prose">
-        <!-- Preview content goes here! -->
+      <article id="preview-output" class="prose" *ngIf="postForm">
+        {{postForm.get('content')?.value | unified:'preview-output' | async }}
       </article>
     </label>
   </label>
