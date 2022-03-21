@@ -84,13 +84,14 @@ export class BlogEditComponent implements OnInit {
 	 * @param err
 	 */
 	getPostError(err: any): void {
-		if (err.status === 404) {
+		if (err.status === 404 || err.status === 400) {
 			this.errorMessage = `Post could not be found`;
 		} else {
 			const errMsg: ErrorResponse = err.error as ErrorResponse;
 			this.errorMessage = errMsg.msg;
 		}
 
+		this.isLoading = false;
 		this.didError = true;
 	}
 
@@ -174,7 +175,7 @@ export class BlogEditComponent implements OnInit {
 
 		this.postService.putPostById(this.post!.id, update).subscribe({
 			next: this.updatePostSuccess.bind(this),
-			error: this.updatePostError.bind(this),
+			error: this.updatePostOrDeleteError.bind(this),
 		});
 
 		this.isBusy = false;
@@ -192,9 +193,35 @@ export class BlogEditComponent implements OnInit {
 	 * Handle createPost error.
 	 * @param err
 	 */
-	updatePostError(err: any): void {
+	updatePostOrDeleteError(err: any): void {
 		const errMsg: ErrorResponse = err.error as ErrorResponse;
 		this.errorMessage = errMsg.msg;
 		this.didError = true;
+	}
+
+	/**
+	 * Handle for deletion.
+	 */
+	onPostDelete(): void {
+		this.isBusy = true;
+
+		// Confirm the User is trying to delete.
+		if (!confirm("Are you sure? This action cannot be undone.")) {
+			this.isBusy = false;
+			return;
+		}
+
+		this.postService.deletePostById(this.post!.id).subscribe({
+			next: this.onDeleteSuccess.bind(this),
+			error: this.updatePostOrDeleteError.bind(this),
+		});
+	}
+
+	/**
+	 * Success Handler for onDelete
+	 * @param obj
+	 */
+	onDeleteSuccess(obj: object): void {
+		this.router.navigate([""]);
 	}
 }
