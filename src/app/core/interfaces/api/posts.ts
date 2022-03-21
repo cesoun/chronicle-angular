@@ -13,3 +13,12 @@ export interface PaginatedPosts {
 	offset: number;
 	count: number;
 }
+
+export interface PostUpdateFields {
+	title?: string;
+	content?: string;
+}
+
+export interface PostUpdate {
+	new: PostUpdateFields;
+}
