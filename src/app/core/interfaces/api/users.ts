@@ -14,3 +14,17 @@ export interface User {
 	email?: string;
 	role: UserRole;
 }
+
+export interface UserUpdateFields {
+	username?: string;
+	email?: string;
+	first_name?: string;
+	last_name?: string;
+	password?: string;
+	role?: UserRole;
+}
+
+export interface UserUpdate {
+	new: UserUpdateFields;
+	password: string;
+}
