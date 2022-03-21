@@ -1,0 +1,93 @@
+<section class="flex flex-col max-w-prose mx-auto gap-4">
+  <!-- Header -->
+  <article class="prose">
+    <h2>New Post</h2>
+    <hr class="bg-accent">
+  </article>
+
+  <!-- Errors -->
+  <section>
+    <div class="alert alert-error shadow-lg" *ngIf="didError">
+      <span>{{errorMessage}}</span>
+    </div>
+    <div class="alert alert-warning shadow-lg" *ngIf="isInvalid">
+      <span>Check inputs and try again...</span>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <button class="btn btn-ghost loading" *ngIf="isLoading"></button>
+
+  <!-- Form -->
+  <form [formGroup]="postForm" (ngSubmit)="doPostCreate()" *ngIf="postForm">
+    <!-- Title -->
+    <div class="form-control">
+      <label for="title" class="label">
+        <span class="label-text">Title</span>
+        <span class="label-text-alt">Simple, Sweet & Informative</span>
+      </label>
+      <input
+        type="text"
+        formControlName="title"
+        id="title"
+        [class.input-error]="postForm.get('title')?.errors"
+        [class.input-success]="!postForm.get('title')?.errors"
+        class="input input-bordered"
+        [minLength]="titleMin"
+        [maxlength]="titleMax"
+        placeholder="Hello, Wonderful!"
+        required>
+      <label *ngIf="postForm.get('title')?.errors" class="label" for="title">
+        <span class="label-text-alt text-error">Min length: 5, Max length: 255</span>
+      </label>
+    </div>
+
+    <!-- Content -->
+    <div class="form-control py-8">
+      <label for="content" class="label">
+        <span class="label-text">Content</span>
+        <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" target="_blank" class="label-text-alt underline">Markdown goes here!</a>
+      </label>
+      <textarea
+        formControlName="content"
+        id="content"
+        cols="30"
+        rows="10"
+        [class.textarea-error]="postForm.get('content')?.errors"
+        [class.textarea-success]="!postForm.get('content')?.errors"
+        class="textarea textarea-bordered p-2"
+        [minLength]="contentMin"
+        [maxLength]="contentMax"
+        [placeholder]="contentPlaceholder"
+        required></textarea>
+
+      <label class="label" for="content">
+        <span class="label-text-alt text-error" *ngIf="postForm.get('content')?.errors">Min length: 30, Max length: 65,535</span>
+      </label>
+    </div>
+
+    <!-- Button -->
+    <div class="grid grid-cols-4 gap-4">
+      <label
+        for="preview-modal"
+        [class.loading]="isBusy"
+        class="btn btn-ghost col-end-4"
+        (click)="doLoadPreview()">{{isBusy ? "" : "Preview"}}</label>
+      <button
+        type="submit"
+        [disabled]="isBusy || !postForm.valid"
+        [class.loading]="isBusy"
+        class="btn btn-primary">{{isBusy ? "" : "Create"}}</button>
+    </div>
+  </form>
+
+  <!-- Preview -->
+  <input type="checkbox" name="preview-modal" id="preview-modal" class="modal-toggle">
+  <label for="preview-modal" class="modal cursor-pointer modal-bottom sm:modal-middle">
+    <label for="" class="modal-box relative max-w-prose">
+      <article id="preview-output" class="prose">
+        <!-- Preview content goes here! -->
+      </article>
+    </label>
+  </label>
+</section>

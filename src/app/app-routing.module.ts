@@ -6,6 +6,8 @@ import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { UserEditComponent } from "./pages/user-edit/user-edit.component";
+import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
+import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
 
 const routes: Routes = [
 	{
@@ -31,11 +33,13 @@ const routes: Routes = [
 	{
 		path: "profile/:username/edit",
 		component: UserEditComponent,
+		canActivate: [IsAuthenticatedGuard],
 	},
-	// {
-	// 	path: "posts/new",
-	// 	component: PostsComponent,
-	// },
+	{
+		path: "post/new",
+		component: BlogCreateComponent,
+		canActivate: [IsAuthenticatedGuard],
+	},
 ];
 
 @NgModule({
