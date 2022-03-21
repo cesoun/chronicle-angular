@@ -66,6 +66,8 @@
 
     <!-- Button -->
     <div class="grid grid-cols-4 gap-4">
+      <button type="button" class="btn btn-error" (click)="onPostDelete()" [class.loading]="isBusy" [disabled]="this.isBusy"
+      >{{!isBusy ? 'Delete Post' : ''}}</button>
       <label
         for="preview-modal"
         [class.loading]="isBusy"
