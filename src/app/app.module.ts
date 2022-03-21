@@ -20,6 +20,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
+import { BlogViewComponent } from "./pages/blog-view/blog-view.component";
+import { UnifiedPipe } from "./pipes/unified/unified.pipe";
 
 @NgModule({
 	declarations: [
@@ -38,6 +40,8 @@ import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
 		UserProfileComponent,
 		UserEditComponent,
 		BlogCreateComponent,
+		BlogViewComponent,
+		UnifiedPipe,
 	],
 	imports: [
 		BrowserModule,

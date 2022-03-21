@@ -5,14 +5,6 @@ import { User } from "../../core/interfaces/api/users";
 import { AuthService } from "../../services/auth/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ErrorResponse } from "../../core/interfaces/api/errors";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkToc from "remark-toc";
-import remarkRehype from "remark-rehype";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeSanitize from "rehype-sanitize";
-import rehypeStringify from "rehype-stringify";
 import { PostUpdateFields } from "../../core/interfaces/api/posts";
 import { Router } from "@angular/router";
 
@@ -151,31 +143,5 @@ export class BlogCreateComponent implements OnInit {
 		const errMsg: ErrorResponse = err.error as ErrorResponse;
 		this.errorMessage = errMsg.msg;
 		this.didError = true;
-	}
-
-	/**
-	 * Load the content into the preview
-	 * TODO: Create a partial component to re-use this.
-	 * TODO: Might be able to utilize a Pipe as well.
-	 */
-	async doLoadPreview() {
-		this.isBusy = true;
-
-		// Convert content to HTML.
-		const { content } = this.postForm?.value;
-		const preview = await unified()
-			.use(remarkParse)
-			.use(remarkGfm)
-			.use(remarkToc)
-			.use(remarkRehype)
-			.use(rehypeExternalLinks)
-			.use(rehypeSanitize)
-			.use(rehypeStringify)
-			.process(content);
-
-		const el = document.getElementById("preview-output")!;
-		el.innerHTML = String(preview.value);
-
-		this.isBusy = false;
 	}
 }

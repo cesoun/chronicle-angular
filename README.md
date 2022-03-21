@@ -20,6 +20,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - rehype-external-links
 - rehype-sanitize
 - rehype-stringify
+- rehype-autolink-headings
+- rehype-slug
 
 ## Development server
 

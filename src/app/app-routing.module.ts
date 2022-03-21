@@ -8,6 +8,7 @@ import { UserProfileComponent } from "./pages/user-profile/user-profile.componen
 import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
 import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
+import { BlogViewComponent } from "./pages/blog-view/blog-view.component";
 
 const routes: Routes = [
 	{
@@ -40,11 +41,19 @@ const routes: Routes = [
 		component: BlogCreateComponent,
 		canActivate: [IsAuthenticatedGuard],
 	},
+	{
+		path: "post/:id",
+		component: BlogViewComponent,
+	},
 ];
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { scrollPositionRestoration: "top" }),
+		RouterModule.forRoot(routes, {
+			scrollPositionRestoration: "top",
+			anchorScrolling: "enabled",
+			scrollOffset: [0, 25],
+		}),
 	],
 	exports: [RouterModule],
 })
