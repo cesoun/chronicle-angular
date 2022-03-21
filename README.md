@@ -9,6 +9,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [daisyui](https://daisyui.com)
 [@fortawesome/fontawesome-free](https://fontawesome.com)
 [@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt)
+[unified](https://github.com/unifiedjs/unified)
+[remark](https://github.com/remarkjs/remark)
+
+### Unified / Remark / Rehype Plugins
+- remark-parse
+- remark-gfm
+- remark-toc
+- remark-rehype
+- rehype-external-links
+- rehype-sanitize
+- rehype-stringify
 
 ## Development server
 

@@ -19,6 +19,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { UserEditComponent } from "./pages/user-edit/user-edit.component";
+import { BlogCreateComponent } from "./pages/blog-create/blog-create.component";
 
 @NgModule({
 	declarations: [
@@ -36,6 +37,7 @@ import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 		LoginComponent,
 		UserProfileComponent,
 		UserEditComponent,
+		BlogCreateComponent,
 	],
 	imports: [
 		BrowserModule,
