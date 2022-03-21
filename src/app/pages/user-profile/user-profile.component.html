@@ -31,14 +31,13 @@
   </section>
 
   <!-- Post Pagination -->
-  <button class="btn btn-ghost loading" *ngIf="!paginatedPosts && !isLoadingPosts"></button>
-  <section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
-    <div *ngIf="paginatedPosts.count === 0">
-      <p>No posts!</p>
-    </div>
+  <button class="btn btn-ghost loading" *ngIf="!paginatedPosts && isLoadingPosts"></button>
+  <section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="!paginatedPosts && !isLoadingPosts">
+    <p>No posts!</p>
+  </section>
 
+  <section class="grid grid-flow-row auto-rows-max pt-4 gap-y-2" *ngIf="paginatedPosts">
     <!-- Posts + Loading -->
-    <button class="btn btn-ghost loading" *ngIf="isLoadingPosts"></button>
     <div *ngIf="!isLoadingPosts">
       <a routerLink="/post/{{post.id}}" class="btn btn-ghost justify-between w-full"
          *ngFor="let post of paginatedPosts.items">
