@@ -55,7 +55,7 @@
             class="fa-solid fa-user"></i></a>
         </li>
         <li>
-          <a routerLink="/settings" class="justify-between">Settings<i class="fa-solid fa-gear"></i></a>
+          <a routerLink="/profile/{{this.authService.getUsernameFromToken()}}/edit" class="justify-between">Settings<i class="fa-solid fa-gear"></i></a>
         </li>
         <li>
           <a href="" class="justify-between" (click)="onLogout()">Logout<i class="fa-solid fa-circle-xmark"></i></a>

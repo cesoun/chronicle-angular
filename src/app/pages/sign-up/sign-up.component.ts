@@ -4,7 +4,6 @@ import { matchValidator } from "../../core/validators/form-validators";
 import { AuthService } from "../../services/auth/auth.service";
 import { TokenResponse } from "../../core/interfaces/api/tokens";
 import { ErrorResponse } from "../../core/interfaces/api/errors";
-import { TokenService } from "../../services/token/token.service";
 import { Router } from "@angular/router";
 
 @Component({
